@@ -1,7 +1,7 @@
 import React from "react";
 import { Checkbox, Stack, Typography, Button } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
-import { updateTaskStatus } from "../store/actions/BoardActions";
+import { removeTask, updateTaskStatus } from "../store/actions/BoardActions";
 import { useDispatch } from "react-redux";
 
 export const Task = ({ task, boardId }) => {
@@ -10,6 +10,10 @@ export const Task = ({ task, boardId }) => {
 
   const handleTaskDone = () => {
     dispatch(updateTaskStatus(boardId, id, !done));
+  };
+
+  const handleRemoveTask = () => {
+    dispatch(removeTask(boardId, id));
   };
   return (
     <Stack
@@ -30,7 +34,7 @@ export const Task = ({ task, boardId }) => {
       </Stack>
       <Stack direction="row">
         <Checkbox checked={done} onChange={handleTaskDone} />
-        <Button>
+        <Button onClick={handleRemoveTask}>
           <ClearIcon color="error" />
         </Button>
       </Stack>

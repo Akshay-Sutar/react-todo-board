@@ -32,3 +32,12 @@ export const updateTaskStatus = (boardId, taskId, status) => {
     });
   };
 };
+
+export const removeTask = (boardId, taskId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: BOARD_CONSTANTS.DELETE_TASK,
+      payload: { boardId, taskId },
+    });
+  };
+};

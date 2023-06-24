@@ -38,7 +38,14 @@ export const BoardReducer = (state = initState, { type, payload }) => {
       selectedTask = board.tasks.find((task) => task.id === taskId);
       selectedTask.done = status;
 
-      newState = { ...state, selectedBoard: board };
+      newState = { ...state, selectedBoard: { ...board } };
+
+      return newState;
+    case BOARD_CONSTANTS.DELETE_TASK:
+      board = state.boards.find((board) => board.id === payload.boardId);
+      board.tasks = board.tasks.filter((task) => task.id !== payload.taskId);
+
+      newState = { ...state, selectedBoard: { ...board } };
 
       return newState;
     default:

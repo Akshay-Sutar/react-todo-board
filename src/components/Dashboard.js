@@ -8,6 +8,8 @@ export const Dashboard = () => {
   const boards = useSelector((state) => state.board.boards);
   const selectedBoard = useSelector((state) => state.board.selectedBoard);
 
+  console.log(selectedBoard)
+
   return (
     <>
       <Container maxWidth="lg">
