@@ -8,11 +8,12 @@ export const Board = ({ board }) => {
   return (
     <Stack
       alignItems="center"
+      flexGrow={1}
       sx={{
-        margin: 2,
         padding: 2,
-        background: "lightblue",
+        background: "#FBFBFD",
       }}
+      spacing={2}
     >
       <Typography variant="f3">{name}</Typography>
       <NewTask boardId={id} />

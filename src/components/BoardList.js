@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { createBoard, selectBoard } from "../store/actions/BoardActions";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
@@ -16,7 +16,15 @@ export const BoardList = ({ boards }) => {
 
   return (
     <>
-      <Grid container justifyContent="center" spacing={2}>
+      <Stack
+        direction="row"
+        justifyContent="center"
+        spacing={2}
+        sx={{
+          background: "#caf0f8",
+          padding: 2,
+        }}
+      >
         {boards.map((board, index) => (
           <Grid key={index} item>
             <Paper
@@ -51,7 +59,7 @@ export const BoardList = ({ boards }) => {
             <Typography>Create new Board</Typography>
           </Paper>
         </Grid>
-      </Grid>
+      </Stack>
     </>
   );
 };

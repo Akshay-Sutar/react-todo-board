@@ -1,4 +1,4 @@
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Stack } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { BoardList } from "./BoardList";
@@ -8,16 +8,16 @@ export const Dashboard = () => {
   const boards = useSelector((state) => state.board.boards);
   const selectedBoard = useSelector((state) => state.board.selectedBoard);
 
-  console.log(selectedBoard)
+  console.log(selectedBoard);
 
   return (
     <>
       <Container maxWidth="lg">
-        <Box sx={{ bgcolor: "#EEEEEE", height: "100vh" }}>
-          <Typography variant="h4">Dashboard</Typography>
+        <Stack sx={{ bgcolor: "#EEEEEE", height: "100vh" }}>
+          <Typography variant="h4">Task Meister</Typography>
           <BoardList boards={boards} />
           {selectedBoard && <Board board={selectedBoard} />}
-        </Box>
+        </Stack>
       </Container>
     </>
   );

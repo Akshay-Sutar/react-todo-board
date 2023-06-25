@@ -20,7 +20,7 @@ export const Task = ({ task, boardId }) => {
       direction="row"
       justifyContent="center"
       sx={{
-        background: "cyan",
+        background: "#caf0f8",
         height: 40,
         alignItems: "center",
         paddingTop: 1,
