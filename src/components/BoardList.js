@@ -1,17 +1,17 @@
 import React from "react";
 import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { createBoard, selectBoard } from "../store/actions/BoardActions";
+import { createBoard, fetchTasks } from "../store/actions/BoardActions";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
 export const BoardList = ({ boards }) => {
   const dispatch = useDispatch();
   const addNewBoard = () => {
-    dispatch(createBoard());
+    dispatch(createBoard(boards.length + 1));
   };
 
   const showBoardTasks = (id) => {
-    dispatch(selectBoard(id));
+    dispatch(fetchTasks(id));
   };
 
   return (
@@ -38,7 +38,7 @@ export const BoardList = ({ boards }) => {
             >
               <Typography variant="h6">{board.name}</Typography>
               <Typography variant="subtitle2">
-                {board.tasks.length} Tasks
+                {board.tasksCount} Tasks
               </Typography>
             </Paper>
           </Grid>

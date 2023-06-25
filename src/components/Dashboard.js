@@ -1,14 +1,18 @@
 import { Container, Typography, Stack } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { BoardList } from "./BoardList";
 import { Board } from "./Board";
+import { fetchBoards } from "../store/actions/BoardActions";
 
 export const Dashboard = () => {
+  const dispatch = useDispatch();
   const boards = useSelector((state) => state.board.boards);
   const selectedBoard = useSelector((state) => state.board.selectedBoard);
 
-  console.log(selectedBoard);
+  useEffect(() => {
+    dispatch(fetchBoards());
+  }, []);
 
   return (
     <>

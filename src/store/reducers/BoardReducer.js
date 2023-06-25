@@ -13,16 +13,16 @@ export const BoardReducer = (state = initState, { type, payload }) => {
   let selectedTask = null;
 
   switch (type) {
+    case BOARD_CONSTANTS.FETCH_BOARDS:
+      let boards = payload.map((board) => {
+        return createNewBoard(board.name, board.id, board.tasksCount);
+      });
+      newState = { selectedBoard, boards: boards };
+      return newState;
     case BOARD_CONSTANTS.CREATE_BOARD:
-      const newBoard = createNewBoard(newState.boards.length + 1);
+      const newBoard = createNewBoard(payload.boardName, payload.boardId);
       newState.boards = [...newState.boards, newBoard];
 
-      return newState;
-
-    case BOARD_CONSTANTS.SELECT_BOARD:
-      selectedBoard = state.boards.find((board) => board.id === payload);
-
-      newState = { ...state, selectedBoard };
       return newState;
 
     case BOARD_CONSTANTS.CREATE_TASK:
@@ -47,6 +47,11 @@ export const BoardReducer = (state = initState, { type, payload }) => {
 
       newState = { ...state, selectedBoard: { ...board } };
 
+      return newState;
+    case BOARD_CONSTANTS.FETCH_TASKS:
+      selectedBoard = state.boards.find((board) => board.id === payload.id);
+      selectedBoard.tasks = payload.tasks.map((task) => createNewTask(task));
+      newState = { ...state, selectedBoard };
       return newState;
     default:
       return state;
