@@ -5,15 +5,15 @@ import { removeTask, updateTaskStatus } from "../store/actions/BoardActions";
 import { useDispatch } from "react-redux";
 
 export const Task = ({ task, boardId }) => {
-  const { taskName, taskDescription, done, id } = task;
+  const { taskName, taskDescription, taskDone, taskId } = task;
   const dispatch = useDispatch();
 
   const handleTaskDone = () => {
-    dispatch(updateTaskStatus(boardId, id, !done));
+    dispatch(updateTaskStatus(boardId, taskId, !taskDone));
   };
 
   const handleRemoveTask = () => {
-    dispatch(removeTask(boardId, id));
+    dispatch(removeTask(boardId, taskId));
   };
   return (
     <Stack
@@ -33,7 +33,7 @@ export const Task = ({ task, boardId }) => {
         <Typography variant="p">{taskName}</Typography>
       </Stack>
       <Stack direction="row">
-        <Checkbox checked={done} onChange={handleTaskDone} />
+        <Checkbox checked={taskDone} onChange={handleTaskDone} />
         <Button onClick={handleRemoveTask}>
           <ClearIcon color="error" />
         </Button>

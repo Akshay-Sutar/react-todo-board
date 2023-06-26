@@ -14,10 +14,10 @@ export const fetchBoards = () => {
   };
 };
 
-export const createBoard = (id) => {
+export const createBoard = (no) => {
   return async (dispatch) => {
     const res = await axios.post(`${SERVER_URL}/board`, {
-      boardName: `Board ${id}`,
+      boardName: `Board ${no}`,
     });
     const { boardName, boardId } = res.data;
     dispatch({
@@ -27,19 +27,19 @@ export const createBoard = (id) => {
   };
 };
 
-export const deleteBoard = (id) => {
+export const deleteBoard = (boardId) => {
   return async (dispatch) => {
-    dispatch({ type: BOARD_CONSTANTS.CREATE_BOARD, payload: id });
+    dispatch({ type: BOARD_CONSTANTS.CREATE_BOARD, payload: boardId });
   };
 };
 
-export const fetchTasks = (id) => {
+export const fetchTasks = (boardId) => {
   return async (dispatch) => {
-    const res = await axios.get(`${SERVER_URL}/tasks/${id}`);
+    const res = await axios.get(`${SERVER_URL}/tasks/${boardId}`);
 
     dispatch({
       type: BOARD_CONSTANTS.FETCH_TASKS,
-      payload: { id, tasks: res.data },
+      payload: { boardId, tasks: res.data },
     });
   };
 };
@@ -78,9 +78,16 @@ export const updateTaskStatus = (boardId, taskId, status) => {
 
 export const removeTask = (boardId, taskId) => {
   return async (dispatch) => {
-    dispatch({
-      type: BOARD_CONSTANTS.DELETE_TASK,
-      payload: { boardId, taskId },
+    const res = await axios.post(`${SERVER_URL}/remove-task`, {
+      boardId,
+      taskId,
     });
+
+    if (res.data.success) {
+      dispatch({
+        type: BOARD_CONSTANTS.DELETE_TASK,
+        payload: { boardId, taskId },
+      });
+    }
   };
 };

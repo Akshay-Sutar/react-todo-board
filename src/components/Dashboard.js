@@ -17,8 +17,12 @@ export const Dashboard = () => {
   return (
     <>
       <Container maxWidth="lg">
-        <Stack sx={{ bgcolor: "#EEEEEE", height: "100vh" }}>
-          <Typography variant="h4">Task Meister</Typography>
+        <Stack sx={{ bgcolor: "#FFFFFF", height: "100vh" }}>
+          <Stack sx={{}}>
+            <Typography variant="h4" sx={{ color: "#0d4771", padding: 2 }}>
+              Task Meister
+            </Typography>
+          </Stack>
           <BoardList boards={boards} />
           {selectedBoard && <Board board={selectedBoard} />}
         </Stack>

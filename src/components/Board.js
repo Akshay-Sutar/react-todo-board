@@ -4,7 +4,7 @@ import { NewTask } from "./NewTask";
 import { TaskList } from "./TaskList";
 
 export const Board = ({ board }) => {
-  const { id, tasks, name } = board;
+  const { boardId, tasks, name } = board;
   return (
     <Stack
       alignItems="center"
@@ -16,8 +16,8 @@ export const Board = ({ board }) => {
       spacing={2}
     >
       <Typography variant="f3">{name}</Typography>
-      <NewTask boardId={id} />
-      <TaskList boardId={id} tasks={tasks} />
+      <NewTask boardId={boardId} />
+      <TaskList boardId={boardId} tasks={tasks} />
     </Stack>
   );
 };
