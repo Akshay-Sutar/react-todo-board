@@ -3,22 +3,26 @@ import { Icon, Paper, Stack, Typography, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { createBoard, fetchTasks } from "../store/actions/BoardActions";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+import { useTheme } from "@mui/material/styles";
 
 export const BoardList = ({ boards, handleAccordianChange }) => {
+  const theme = useTheme();
   const dispatch = useDispatch();
-  
+
   const addNewBoard = () => {
     dispatch(createBoard(boards.length + 1));
   };
 
   const showBoardTasks = (boardId) => {
-    handleAccordianChange('tasks-panel')
+    handleAccordianChange("tasks-panel");
     dispatch(fetchTasks(boardId));
   };
 
   return (
-    <Stack flexDirection="column" spacing={2}>
-      <Typography>Your Boards</Typography>
+    <Stack flexDirection="column" spacing={2} sx={{ padding: 2 }}>
+      <Typography variant="h4" color="primary.dark">
+        Your Boards
+      </Typography>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Paper
           elevation={3}
@@ -26,7 +30,7 @@ export const BoardList = ({ boards, handleAccordianChange }) => {
           sx={{
             height: 120,
             width: 120,
-            backgroundColor: "#0d4771",
+            backgroundColor: theme.palette.primary.main,
             color: "#fff",
             margin: 1,
           }}

@@ -29,7 +29,9 @@ export const Board = ({ board, handleAccordianChange }) => {
           sx={{ position: "absolute", left: 0 }}
           onClick={onBackClick}
         />
-        <Typography variant="f3">{boardName}</Typography>
+        <Typography variant="h6" color="primary.dark">
+          {boardName}
+        </Typography>
       </Stack>
       <NewTask boardId={boardId} />
       <TaskList boardId={boardId} tasks={tasks} />

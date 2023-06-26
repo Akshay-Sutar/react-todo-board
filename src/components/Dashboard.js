@@ -28,13 +28,12 @@ export const Dashboard = () => {
     dispatch(fetchBoards());
   }, []);
 
-
   return (
     <>
       <Container maxWidth="lg">
         <Stack sx={{ bgcolor: "#FFFFFF", height: "100vh" }}>
-          <Stack sx={{}}>
-            <Typography variant="h4" sx={{ color: "#0d4771", padding: 2 }}>
+          <Stack>
+            <Typography variant="h5" color="primary.main" sx={{ padding: 2 }}>
               Task Meister
             </Typography>
           </Stack>
@@ -54,24 +53,27 @@ export const Dashboard = () => {
               />
             </AccordionDetails>
           </Accordion>
+
           {selectedBoard && (
-            <Accordion
-              expanded={expanded === "tasks-panel"}
-              onChange={handleChange("tasks-panel")}
-            >
-              <AccordionSummary
-                aria-controls="tasks-panelbh-content"
-                id="tasks-panelbh-header"
-              ></AccordionSummary>
-              <AccordionDetails>
-                {selectedBoard && (
-                  <Board
-                    handleAccordianChange={handleAccordianChange}
-                    board={selectedBoard}
-                  />
-                )}
-              </AccordionDetails>
-            </Accordion>
+            <Stack sx={{ flexGrow: 1 }}>
+              <Accordion
+                expanded={expanded === "tasks-panel"}
+                onChange={handleChange("tasks-panel")}
+              >
+                <AccordionSummary
+                  aria-controls="tasks-panelbh-content"
+                  id="tasks-panelbh-header"
+                ></AccordionSummary>
+                <AccordionDetails>
+                  {selectedBoard && (
+                    <Board
+                      handleAccordianChange={handleAccordianChange}
+                      board={selectedBoard}
+                    />
+                  )}
+                </AccordionDetails>
+              </Accordion>
+            </Stack>
           )}
         </Stack>
       </Container>
