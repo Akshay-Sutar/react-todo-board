@@ -1,65 +1,62 @@
 import React from "react";
-import { Button, Grid, Icon, Paper, Stack, Typography } from "@mui/material";
+import { Icon, Paper, Stack, Typography, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { createBoard, fetchTasks } from "../store/actions/BoardActions";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
-export const BoardList = ({ boards }) => {
+export const BoardList = ({ boards, handleAccordianChange }) => {
   const dispatch = useDispatch();
+  
   const addNewBoard = () => {
     dispatch(createBoard(boards.length + 1));
   };
 
   const showBoardTasks = (boardId) => {
+    handleAccordianChange('tasks-panel')
     dispatch(fetchTasks(boardId));
   };
 
   return (
-    <Stack>
+    <Stack flexDirection="column" spacing={2}>
       <Typography>Your Boards</Typography>
-      <Stack
-        direction="row"
-        justifyContent="center"
-        spacing={2}
-        sx={{
-          // background: "#caf0f8",
-          padding: 2,
-        }}
-      >
-        {boards.map((board, index) => (
-          <Stack key={index} item>
-            <Paper
-              sx={{
-                height: 120,
-                width: 120,
-                backgroundColor: (theme) =>
-                  theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-              }}
-              onClick={(e) => showBoardTasks(board.boardId)}
-            >
-              <Stack
-                direction="column"
-                sx={{
-                  height: "100%",
-                  alignItems: "center",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                <Typography variant="h6">{board.boardName}</Typography>
-                <Typography variant="p">{board.tasksCount} Tasks</Typography>
-              </Stack>
-            </Paper>
+      <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Paper
+          elevation={3}
+          className="my-card"
+          sx={{
+            height: 120,
+            width: 120,
+            backgroundColor: "#0d4771",
+            color: "#fff",
+            margin: 1,
+          }}
+          onClick={addNewBoard}
+        >
+          <Stack
+            direction="column"
+            sx={{
+              height: "100%",
+              alignItems: "center",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <Icon>
+              <LibraryAddIcon />
+            </Icon>
+            <Typography variant="p">Create new Board</Typography>
           </Stack>
-        ))}
-        <Stack key={boards.length} item>
+        </Paper>
+        {boards.map((board, index) => (
           <Paper
+            elevation={3}
+            className="my-card"
             sx={{
               height: 120,
               width: 120,
-              backgroundColor: "#0d4771",
-              color: "#fff",
+              backgroundColor: "#fff",
+              margin: 1,
             }}
-            onClick={addNewBoard}
+            onClick={(e) => showBoardTasks(board.boardId)}
           >
             <Stack
               direction="column"
@@ -69,14 +66,12 @@ export const BoardList = ({ boards }) => {
                 justifyContent: "space-evenly",
               }}
             >
-              <Icon>
-                <LibraryAddIcon />
-              </Icon>
-              <Typography variant="p">Create new Board</Typography>
+              <Typography variant="h6">{board.boardName}</Typography>
+              <Typography variant="p">{board.tasksCount} Tasks</Typography>
             </Stack>
           </Paper>
-        </Stack>
-      </Stack>
+        ))}
+      </Grid>
     </Stack>
   );
 };

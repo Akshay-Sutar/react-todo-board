@@ -37,6 +37,23 @@
   }
 }
 
-ul {
-  list-style-type: none;
+.my-card {
+  transition: all 0.3s !important;
+}
+
+.my-card:hover {
+  transform: scale(1.01);
+}
+
+.MuiAccordionDetails-root {
+  padding: 0 !important;
+}
+
+.MuiAccordion-gutters::before {
+  height: 0 !important;
+}
+
+#tasks-panelbh-header,
+#board-panelbh-header {
+  display: none;
 }
