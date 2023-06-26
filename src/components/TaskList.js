@@ -7,13 +7,13 @@ export const TaskList = ({ tasks, boardId }) => {
   return (
     <Stack sx={{ width: 550 }}>
       {tasks.length > 0 && (
-        <Typography variant="h5" color="primary.dark" textAlign="left">
+        <Typography variant="h5" color="primary.dark" textAlign="center">
           Your Tasks
         </Typography>
       )}
       {tasks.length === 0 && (
         <Typography variant="h6" color="primary.dark" textAlign="left">
-          Start typing tasks here
+          No Tasks !! Start typing tasks here
           <PanToolAltIcon />
         </Typography>
       )}
