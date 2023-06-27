@@ -53,13 +53,18 @@ export const NewTask = ({ boardId }) => {
         <Stack direction="column" spacing={2} alignItems="center">
           <Stack direction="row" sx={{ width: "100%" }} spacing={1}>
             <TextField
+              className={
+                error
+                  ? "animate__animated animate__shakeX"
+                  : "animate__animated "
+              }
               label=""
               variant="outlined"
               value={taskName}
               onChange={handleChange}
               placeholder="What you want to do today?"
               error={error}
-              helperText={error ? "Enter a task first !!" : ""}
+              //helperText={error ? "Enter a task first !!" : ""}
               sx={{
                 flexGrow: 1,
               }}

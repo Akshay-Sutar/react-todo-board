@@ -21,7 +21,7 @@ export const BoardReducer = (state = initState, { type, payload }) => {
       return newState;
 
     case BOARD_CONSTANTS.CREATE_BOARD:
-      const newBoard = createNewBoard(payload.boardName, payload.boardId);
+      const newBoard = createNewBoard(payload.boardName, payload.boardId, 0);
       newState.boards = [...newState.boards, newBoard];
 
       return newState;
