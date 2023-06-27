@@ -13,7 +13,7 @@ export const Board = ({ board, handleAccordianChange }) => {
 
   return (
     <Stack
-      alignItems="center"
+      alignItems="stretch"
       flexGrow={1}
       sx={{
         padding: 2,
@@ -23,6 +23,7 @@ export const Board = ({ board, handleAccordianChange }) => {
     >
       <Stack
         direction="row"
+        flexGrow={1}
         sx={{ width: "100%", justifyContent: "center", position: "relative" }}
       >
         <ArrowBackIcon

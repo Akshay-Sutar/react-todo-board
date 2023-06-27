@@ -29,7 +29,12 @@ export const BoardList = ({ boards, handleAccordianChange }) => {
       <Typography variant="h4" color="primary.dark">
         Your Boards
       </Typography>
-      <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid
+        container
+        rowSpacing={2}
+        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        justifyContent={{ xs: "center", md: "flex-start" }}
+      >
         <Paper
           elevation={3}
           className="my-card"

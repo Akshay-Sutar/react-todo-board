@@ -5,7 +5,7 @@ import PanToolAltIcon from "@mui/icons-material/PanToolAlt";
 
 export const TaskList = ({ tasks, boardId }) => {
   return (
-    <Stack sx={{ width: 550 }}>
+    <Stack flexGrow={1}>
       {tasks.length > 0 && (
         <Typography
           variant="h5"
@@ -22,12 +22,7 @@ export const TaskList = ({ tasks, boardId }) => {
           <PanToolAltIcon />
         </Typography>
       )}
-      <Stack
-        spacing={2}
-        direction="column"
-        sx={{ width: 550, minHeight: 350 }}
-        alignItems="center"
-      >
+      <Stack spacing={2} direction="column" alignItems="center" flexGrow={1}>
         {tasks.map((task) => (
           <Task task={task} boardId={boardId} />
         ))}
