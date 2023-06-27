@@ -47,12 +47,12 @@ export const Task = ({ task, boardId }) => {
             boxShadow: "none",
           }}
         >
-          <AccordionSummary>
-            <Typography variant="p" color="primary.main" sx={{ padding: 0 }}>
+          <AccordionSummary sx={{ padding: 0, textAlign: "left" }}>
+            <Typography variant="p" color="primary.main">
               {taskName}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails sx={{ textAlign: "left" }}>
+          <AccordionDetails sx={{ textAlign: "left", padding: 0 }}>
             <Typography variant="p" color="text.primary">
               {taskDescription}
             </Typography>
