@@ -82,8 +82,8 @@ export const NewTask = ({ boardId }) => {
               value={taskDescription}
               onChange={handleDescriptionChange}
               multiline
-              rows={1}
-              placeholder="A description perhaps to add context "
+              rows={2}
+              placeholder="A description to add context"
               sx={{ width: "100%" }}
             />
           )}
