@@ -7,7 +7,12 @@ export const TaskList = ({ tasks, boardId }) => {
   return (
     <Stack sx={{ width: 550 }}>
       {tasks.length > 0 && (
-        <Typography variant="h5" color="primary.dark" textAlign="center">
+        <Typography
+          variant="h5"
+          color="primary.dark"
+          textAlign="center"
+          marginBottom={2}
+        >
           Your Tasks
         </Typography>
       )}

@@ -3,8 +3,13 @@ import { Checkbox, Stack, Typography, Button } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import { removeTask, updateTaskStatus } from "../store/actions/BoardActions";
 import { useDispatch } from "react-redux";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import { useTheme } from "@mui/material/styles";
 
 export const Task = ({ task, boardId }) => {
+  const theme = useTheme();
   const { taskName, taskDescription, taskDone, taskId } = task;
   const dispatch = useDispatch();
 
@@ -20,8 +25,7 @@ export const Task = ({ task, boardId }) => {
       direction="row"
       justifyContent="center"
       sx={{
-        background: "#caf0f8",
-        height: 40,
+        border: "1px solid " + theme.palette.secondary.main,
         alignItems: "center",
         paddingTop: 1,
         paddingBottom: 1,
@@ -30,7 +34,24 @@ export const Task = ({ task, boardId }) => {
       }}
     >
       <Stack direction="row" flexGrow={3} sx={{ paddingLeft: 2 }}>
-        <Typography variant="p">{taskName}</Typography>
+        <Accordion
+          sx={{
+            width: "100%",
+            background: theme.palette.common.white,
+            boxShadow: "none",
+          }}
+        >
+          <AccordionSummary>
+            <Typography variant="p" color="primary.main" sx={{ padding: 0 }}>
+              {taskName}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails sx={{ textAlign: "left" }}>
+            <Typography variant="p" color="text.primary">
+              {taskDescription}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
       </Stack>
       <Stack direction="row">
         <Checkbox checked={taskDone} onChange={handleTaskDone} />
