@@ -1,7 +1,11 @@
 import React from "react";
 import { Checkbox, Stack, Typography, Button } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
-import { removeTask, updateTaskStatus } from "../store/actions/BoardActions";
+import {
+  removeTask,
+  setLoaderStatus,
+  updateTaskStatus,
+} from "../store/actions/BoardActions";
 import { useDispatch } from "react-redux";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -14,10 +18,12 @@ export const Task = ({ task, boardId }) => {
   const dispatch = useDispatch();
 
   const handleTaskDone = () => {
+    // dispatch(setLoaderStatus(true));
     dispatch(updateTaskStatus(boardId, taskId, !taskDone));
   };
 
   const handleRemoveTask = () => {
+    // dispatch(setLoaderStatus(true));
     dispatch(removeTask(boardId, taskId));
   };
   return (

@@ -1,4 +1,5 @@
 import "./App.css";
+import "animate.css";
 import { Dashboard } from "./components/Dashboard";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { themeObj } from "./utils/theme";

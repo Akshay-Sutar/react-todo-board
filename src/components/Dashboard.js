@@ -1,20 +1,23 @@
 import { Container, Typography, Stack } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BoardList } from "./BoardList";
 import { Board } from "./Board";
-import { fetchBoards } from "../store/actions/BoardActions";
+import { fetchBoards, setLoaderStatus } from "../store/actions/BoardActions";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
+import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
 
 export const Dashboard = () => {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.board.loading || false);
   const boards = useSelector((state) => state.board.boards);
   const selectedBoard = useSelector((state) => state.board.selectedBoard);
 
-  const [expanded, setExpanded] = React.useState("board-panel");
+  const [expanded, setExpanded] = useState("board-panel");
 
   const handleAccordianChange = (panel) => {
     setExpanded(panel);
@@ -25,12 +28,21 @@ export const Dashboard = () => {
   };
 
   useEffect(() => {
+    dispatch(setLoaderStatus(true));
     dispatch(fetchBoards());
   }, []);
 
   return (
     <>
       <Container maxWidth="lg">
+        {loading && (
+          <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={true}
+          >
+            <CircularProgress color="primary" />
+          </Backdrop>
+        )}
         <Stack sx={{ bgcolor: "#FFFFFF", height: "100vh" }}>
           <Stack>
             <Typography variant="h5" color="primary.main" sx={{ padding: 2 }}>

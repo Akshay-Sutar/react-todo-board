@@ -3,6 +3,15 @@ import axios from "axios";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
+export const setLoaderStatus = (status) => {
+  return async (dispatch) => {
+    dispatch({
+      type: BOARD_CONSTANTS.SET_LOADING,
+      payload: status,
+    });
+  };
+};
+
 export const fetchBoards = () => {
   return async (dispatch) => {
     const res = await axios.get(`${SERVER_URL}/boards`);

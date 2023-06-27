@@ -4,6 +4,7 @@ import { BOARD_CONSTANTS } from "../constants/BoardConstants";
 const initState = {
   boards: [],
   selectedBoard: null,
+  loading: false,
 };
 
 export const BoardReducer = (state = initState, { type, payload }) => {
@@ -13,16 +14,22 @@ export const BoardReducer = (state = initState, { type, payload }) => {
   let selectedTask = null;
 
   switch (type) {
+    case BOARD_CONSTANTS.SET_LOADING:
+      newState = { ...state };
+      newState.loading = payload;
+
+      return newState;
     case BOARD_CONSTANTS.FETCH_BOARDS:
       let boards = payload.map((board) => {
         return createNewBoard(board.boardName, board.boardId, board.tasksCount);
       });
-      newState = { selectedBoard, boards: boards };
+      newState = { selectedBoard, boards: boards, loading: false };
       return newState;
 
     case BOARD_CONSTANTS.CREATE_BOARD:
       const newBoard = createNewBoard(payload.boardName, payload.boardId, 0);
       newState.boards = [...newState.boards, newBoard];
+      newState.loading = false;
 
       return newState;
 
@@ -32,7 +39,7 @@ export const BoardReducer = (state = initState, { type, payload }) => {
       board.tasks = [...board.tasks, createNewTask(task)];
       board.tasksCount = board.tasksCount + 1;
 
-      newState = { ...state, selectedBoard: { ...board } };
+      newState = { ...state, selectedBoard: { ...board }, loading: false };
       return newState;
 
     case BOARD_CONSTANTS.UPDATE_TASK_STATUS:
@@ -41,7 +48,7 @@ export const BoardReducer = (state = initState, { type, payload }) => {
       selectedTask = board.tasks.find((task) => task.taskId === taskId);
       selectedTask.done = status;
 
-      newState = { ...state, selectedBoard: { ...board } };
+      newState = { ...state, selectedBoard: { ...board }, loading: false };
 
       return newState;
 
@@ -52,7 +59,7 @@ export const BoardReducer = (state = initState, { type, payload }) => {
       );
       board.tasksCount = board.tasksCount - 1;
 
-      newState = { ...state, selectedBoard: { ...board } };
+      newState = { ...state, selectedBoard: { ...board }, loading: false };
 
       return newState;
 
@@ -61,7 +68,7 @@ export const BoardReducer = (state = initState, { type, payload }) => {
         (board) => board.boardId === payload.boardId
       );
       selectedBoard.tasks = payload.tasks.map((task) => createNewTask(task));
-      newState = { ...state, selectedBoard };
+      newState = { ...state, selectedBoard, loading: false };
       return newState;
 
     default:

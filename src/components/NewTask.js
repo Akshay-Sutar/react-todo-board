@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
-import { createTask } from "../store/actions/BoardActions";
+import { createTask, setLoaderStatus } from "../store/actions/BoardActions";
 import { useDispatch } from "react-redux";
 
 export const NewTask = ({ boardId }) => {
@@ -35,6 +35,7 @@ export const NewTask = ({ boardId }) => {
     setTaskName("");
     setTaskDescription("");
     setShowDescription(false);
+    dispatch(setLoaderStatus(true));
     dispatch(
       createTask(boardId, {
         taskName,

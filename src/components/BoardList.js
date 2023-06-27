@@ -1,7 +1,11 @@
 import React from "react";
 import { Icon, Paper, Stack, Typography, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { createBoard, fetchTasks } from "../store/actions/BoardActions";
+import {
+  createBoard,
+  fetchTasks,
+  setLoaderStatus,
+} from "../store/actions/BoardActions";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 import { useTheme } from "@mui/material/styles";
 
@@ -10,10 +14,12 @@ export const BoardList = ({ boards, handleAccordianChange }) => {
   const dispatch = useDispatch();
 
   const addNewBoard = () => {
+    dispatch(setLoaderStatus(true));
     dispatch(createBoard(boards.length + 1));
   };
 
   const showBoardTasks = (boardId) => {
+    dispatch(setLoaderStatus(true));
     handleAccordianChange("tasks-panel");
     dispatch(fetchTasks(boardId));
   };
