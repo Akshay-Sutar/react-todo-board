@@ -36,6 +36,20 @@ export const createBoard = (no) => {
   };
 };
 
+export const updateBoard = (boardName, boardId) => {
+  return async (dispatch) => {
+    await axios.post(`${SERVER_URL}/update-board`, {
+      boardName: boardName,
+      boardId: boardId,
+    });
+
+    dispatch({
+      type: BOARD_CONSTANTS.UPDATE_BOARD,
+      payload: { boardId, boardName },
+    });
+  };
+};
+
 export const deleteBoard = (boardId) => {
   return async (dispatch) => {
     dispatch({ type: BOARD_CONSTANTS.CREATE_BOARD, payload: boardId });

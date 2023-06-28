@@ -19,6 +19,14 @@ export const BoardReducer = (state = initState, { type, payload }) => {
       newState.loading = payload;
 
       return newState;
+    case BOARD_CONSTANTS.UPDATE_BOARD:
+      newState = { ...state, loading: false };
+      board = newState.boards.find(
+        (board) => board.boardId === payload.boardId
+      );
+      board.boardName = payload.boardName;
+      return newState;
+
     case BOARD_CONSTANTS.FETCH_BOARDS:
       let boards = payload.map((board) => {
         return createNewBoard(board.boardName, board.boardId, board.tasksCount);

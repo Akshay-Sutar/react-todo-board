@@ -71,6 +71,7 @@ export const BoardList = ({ boards, handleAccordianChange }) => {
               backgroundColor: "#fff",
               margin: 1,
             }}
+            key={index}
             onClick={(e) => showBoardTasks(board.boardId)}
           >
             <Stack

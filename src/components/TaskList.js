@@ -23,8 +23,8 @@ export const TaskList = ({ tasks, boardId }) => {
         </Typography>
       )}
       <Stack spacing={2} direction="column" alignItems="center" flexGrow={1}>
-        {tasks.map((task) => (
-          <Task task={task} boardId={boardId} />
+        {tasks.map((task, index) => (
+          <Task key={index} task={task} boardId={boardId} />
         ))}
       </Stack>
     </Stack>
